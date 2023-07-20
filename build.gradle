@@ -25,6 +25,13 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.mysql:mysql-connector-j:8.0.32'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security:3.1.0'
+	testImplementation 'org.springframework.security:spring-security-test:6.1.0'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1' //JWT : jjwt = java jSON web token
+	implementation 'javax.xml.bind:jaxb-api:2.3.1' // XML문서와 Java간 매핑 자동화
 }
 
 tasks.named('test') {

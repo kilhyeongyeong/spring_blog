@@ -7,9 +7,52 @@
 
     <!--  리턴 타입이 entity등의 클래스로 구성된 경우 패키지명부터 적어준다.  -->
     <select id="findAll" resultType="com.spring.blog.entity.Blog">
-        SELECT *
+        SELECT blog_id as blogId,
+               writer as writer,
+               blog_title as blogTitle,
+               blog_content as blogContent,
+               published_at as publishedAt,
+               update_at as updateAt,
+               blog_count as blogCount
           FROM blog
+         ORDER BY blogId DESC
     </select>
+
+    <select id="findById" resultType="com.spring.blog.entity.Blog" parameterType="long">
+        SELECT blog_id as blogId,
+               writer as writer,
+               blog_title as blogTitle,
+               blog_content as blogContent,
+               published_at as publishedAt,
+               update_at as updateAt,
+               blog_count as blogCount
+          FROM blog
+         WHERE blog_id = #{blogId}
+    </select>
+
+    <insert id="save" parameterType="com.spring.blog.entity.Blog">
+        INSERT INTO
+            blog(writer, blog_title, blog_content)
+        VALUES
+            (#{writer}, #{blogTitle}, #{blogContent});
+    </insert>
+
+    <update id="deleteById" parameterType="long">
+        DELETE FROM
+            blog
+         WHERE
+            blog_id = #{blogId}
+    </update>
+
+    <update id="update" parameterType="com.spring.blog.entity.Blog">
+        UPDATE
+            blog
+        SET
+            blog_title=#{blogTitle},
+            blog_content=#{blogContent},
+            update_at=NOW()
+        WHERE blog_id=#{blogId}
+    </update>
 
     <!--  테스트를 위한 쿼리문들  -->
     <update id="createBlogTable">

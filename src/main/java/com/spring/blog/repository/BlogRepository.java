@@ -21,4 +21,16 @@ public interface BlogRepository {
     /////////////////////////////
     // 전체 데이터 조회 기능
     List<Blog> findAll();
+
+    // 단일 행 조회 기능
+    Blog findById(long blogId);
+
+    // 새 데이터 저장 기능
+    boolean save(Blog blog);
+
+    // 데이터 삭제 기능
+    boolean deleteById(long blogId);
+    
+    // 데이터 없데이트
+    boolean update(Blog blog);
 }
