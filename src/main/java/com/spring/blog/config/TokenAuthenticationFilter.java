@@ -13,7 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @RequiredArgsConstructor
-public class TokenAuthenticationFiltr extends OncePerRequestFilter {
+public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     // 토큰제공자 내부의 validToken 메서드를 이용해서 토큰의 유효성을 검증할 예정이므로 의존성 주입
     private final TokenProvider tokenProvider;
@@ -38,6 +38,8 @@ public class TokenAuthenticationFiltr extends OncePerRequestFilter {
             Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);   // 인증 완료해주기
         }
+
+        filterChain.doFilter(request, response);
     }
 
     // 들어온 토큰에서 Bearer 접두사 제거로직
